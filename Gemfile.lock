@@ -86,10 +86,7 @@ GEM
     erubi (1.10.0)
     execjs (2.7.0)
     ffi (1.15.0)
-<<<<<<< HEAD
     ffi (1.15.0-x64-mingw32)
-=======
->>>>>>> 3206763d6d01e42c9488adc331be1befebf5059d
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.10)
@@ -107,7 +104,6 @@ GEM
     marcel (1.0.1)
     method_source (1.0.0)
     mini_mime (1.0.3)
-<<<<<<< HEAD
     mini_portile2 (2.5.0)
     minitest (5.14.4)
     msgpack (1.4.2)
@@ -116,12 +112,6 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nokogiri (1.11.3-x64-mingw32)
-=======
-    minitest (5.14.4)
-    msgpack (1.4.2)
-    nio4r (2.5.7)
-    nokogiri (1.11.3-x86_64-linux)
->>>>>>> 3206763d6d01e42c9488adc331be1befebf5059d
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.20.1)
@@ -223,11 +213,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-<<<<<<< HEAD
     tzinfo-data (1.2021.1)
       tzinfo (>= 1.0.0)
-=======
->>>>>>> 3206763d6d01e42c9488adc331be1befebf5059d
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.0.0)
@@ -267,11 +254,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-<<<<<<< HEAD
    ruby 3.0.0p0
-=======
-   ruby 2.7.0
->>>>>>> 3206763d6d01e42c9488adc331be1befebf5059d
 
 BUNDLED WITH
    2.2.3
