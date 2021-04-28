@@ -1,3 +1,4 @@
+# rubocop:disable Lint/ShadowingOuterLocalVariable
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,12 +14,15 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
+  has_many :confirmed_friendships, -> { where confirmed: true }, class_name: 'Friendship'
+  has_many :friends, through: :confirmed_friendships
+
   def pending_friends
     friendships.map{ |friendship| friendship.friend unless friendship.confirmed}.compact
   end
 
   def friend_requests
-    inverse_friendships.map{|friendship| friendship.user if !friendship.confirmed}.compact
+    inverse_friendships.map{|friendship| friendship.user unless friendship.confirmed}.compact
   end
 
   def confirm_friend(user)
@@ -31,3 +35,4 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 end
+# rubocop:enable Lint/ShadowingOuterLocalVariable
