@@ -1,6 +1,10 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
+  <%if current_user == @user%>
+    
+  <%else%>
   <%= link_to 'send friend request', user_friendships_path(@user),method: :post%>
+  <%end%>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
