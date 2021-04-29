@@ -1,7 +1,14 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
   <%if current_user == @user%>
-    
+  <div>
+    <h3>pending friends:</h3>
+    <ul>
+      <%@pending_friends.each do |pen_friend|%>
+        <li><%= link_to pen_friend.name, pen_friend %></li>
+      <%end%>
+    </ul>
+  </div>
   <%else%>
   <%= link_to 'send friend request', user_friendships_path(@user),method: :post%>
   <%end%>
