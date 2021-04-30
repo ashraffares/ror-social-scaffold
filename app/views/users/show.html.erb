@@ -1,36 +1,60 @@
 
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
-  <% if current_user.friend?(@user) or current_user == @user%>
-      <%= link_to 'unfriend friend', friendship_path(@user),method: :delete %>
-        <article class="timeline">
+  <%if !current_user.friend?(@user) and current_user != @user%>
+    <%= link_to 'Add '+ @user.name+' as a friend',  user_friendships_path(@user), method: :post, class: 'profile-link' %>
+  <%end%>
+     <article class="timeline">
         <h3>Recent posts:</h3>
         <ul class="posts">
         <%= render @posts %>
-      
-  <%elsif current_user != @user%>
-    <%= link_to 'Add as a friend',  user_friendships_path(@user), method: :post, class: 'profile-link' %>
-  <%end%>
-
-    <h3>Friends</h3>
-    <% @friends.each { |friend| %>
-    <%if current_user == @user%>
-       <%= link_to friend.name,user_path(friend.id)%>
-    <%end%>
-    <% } %>
-      <h3>Friends request</h3>
-      
-      <% @friends_requests.each do |friend_req|%>
-      
-        <%= friend_req.name %>
-        <%= link_to 'Decline', user_friendships_path(friend_req),method: :delete%>
-        <%= link_to 'Approve',  user_accept_friendships_path(friend_req)%>
-      <% end %>
-      <h3>Pending friend's requests</h3>
-      <% @pending_friends.each do |pen_friend|%>
-        <%= pen_friend.name%>
-      <% end %>
-       
     </ul>
   </article>
 </section>
+
+<%if current_user.friend?(@user) or current_user == @user%>
+<table class="container table">
+  <thead>
+    <tr>
+      <td>Friends</td>
+      <td>Friends request</td>
+      <td>Pending friend's </td>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+      <td>
+        <ul>
+          <% @friends.each do |friend| %>
+            <%if current_user == @user%>
+            <li>
+              <%= link_to friend.name, user_path(friend.id)%>
+            </li>
+            <%end%>
+          <%end%>     
+        </ul>
+      </td>
+       <td>
+        <ul>       
+          <% @friends_requests.each do |friend_req|%>  
+          <li>
+          <%= friend_req.name %>
+            <%if current_user == @user%>
+              <%= link_to 'Decline', friendship_path(friend_req),method: :delete%>
+              <%= link_to 'Approve',  user_accept_friendships_path(friend_req)%>
+            <%end%>
+          </li>
+          <%end%>
+        </ul>
+      </td>
+      <td>
+        <ul>       
+          <% @pending_friends.each do |pen_friend|%>
+            <li><%= pen_friend.name%></li>
+          <% end %>
+        </ul>
+      </td>
+      </tr>
+  </tbody>
+</table>
+<%end%>
