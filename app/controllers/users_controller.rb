@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @pending_friends = current_user.pending_friends
+    @friends = current_user.friends
   end
 
   def show

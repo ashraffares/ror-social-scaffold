@@ -2,5 +2,11 @@
   Name: <%= user.name %>
   <span class="profile-link">
     <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
+    <%if current_user.friend?(user) %>
+      <%= link_to 'unfriend friend', friendship_path(user),method: :delete %>
+    <% elsif current_user.friend_requests.include?(user) %>
+        <%= link_to 'Decline', user_friendships_path(user),method: :delete%>
+        <%= link_to 'Approve',  user_accept_friendships_path(user)%>
+    <%end%>
   </span>
 </li>

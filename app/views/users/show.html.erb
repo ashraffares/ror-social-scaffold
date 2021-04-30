@@ -23,7 +23,7 @@
       <% @friends_requests.each do |friend_req|%>
       
         <%= friend_req.name %>
-        <%= link_to 'Decline', user_friendship_path(friend_req),method: :delete%>
+        <%= link_to 'Decline', user_friendships_path(friend_req),method: :delete%>
         <%= link_to 'Approve',  user_accept_friendships_path(friend_req)%>
       <% end %>
       <h3>Pending friend's requests</h3>
