@@ -9,7 +9,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     @friendship = current_user.inverse_friendships.find { |friendship| friendship.user == @user }
     @friendship.destroy
     redirect_to users_path, notice: 'successfully removed'

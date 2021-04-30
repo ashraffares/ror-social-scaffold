@@ -31,12 +31,6 @@ class User < ApplicationRecord
     friendship.save
   end
 
-  def remove_request(user,friend)
-    del_friend = Friendship.where(user_id:user,friend_id:friend)
-    del_friend = Friendship.find(del_friend.ids.first)
-    del_friend.destroy
-  end
-
   def friend?(user)
     friends.include?(user)
   end
