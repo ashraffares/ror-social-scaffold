@@ -1,16 +1,17 @@
 
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
-  <% if current_user.friend?(@user)%>
+  <% if current_user.friend?(@user) or current_user == @user%>
       <%= link_to 'unfriend friend', friendship_path(@user),method: :delete %>
+        <article class="timeline">
+        <h3>Recent posts:</h3>
+        <ul class="posts">
+        <%= render @posts %>
+      
   <%elsif current_user != @user%>
     <%= link_to 'Add as a friend',  user_friendships_path(@user), method: :post, class: 'profile-link' %>
   <%end%>
-  <article class="timeline">
-    <h3>Recent posts:</h3>
-    <ul class="posts">
-    <%= render @posts %>
-      
+
     <h3>Friends</h3>
     <% @friends.each { |friend| %>
     <%if current_user == @user%>
@@ -20,17 +21,14 @@
       <h3>Friends request</h3>
       
       <% @friends_requests.each do |friend_req|%>
-      <%if current_user == @user%>
+      
         <%= friend_req.name %>
         <%= link_to 'Decline', user_friendship_path(friend_req),method: :delete%>
         <%= link_to 'Approve',  user_accept_friendships_path(friend_req)%>
-      <%end%>
       <% end %>
       <h3>Pending friend's requests</h3>
       <% @pending_friends.each do |pen_friend|%>
-        <%if current_user == @user%>
         <%= pen_friend.name%>
-        <%end%>
       <% end %>
        
     </ul>
