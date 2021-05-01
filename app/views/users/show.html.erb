@@ -1,7 +1,7 @@
 
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
-      <%if !@user.friend?(current_user) and @user != current_user and !current_user.pending_friends.include?(@user)%>
+      <%if !@user.friend?(current_user) and @user != current_user and !@user.pending_friends.include?(current_user)%>
     <%= link_to 'Add '+ @user.name+' as a friend',  user_friendships_path(@user), method: :post, class: 'profile-link' %>
   <%end%>
      <article class="timeline">
@@ -58,3 +58,4 @@
   </tbody>
 </table>
 <%end%>
+
