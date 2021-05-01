@@ -20,6 +20,7 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.inverse_friendships.find { |friendship| friendship.user == @user }
     @friendship.confirmed = true
     @friendship.save
-    redirect_to users_path, notice: 'successfully accepted it'
+    Friendship.create!(friend_id: @user.id, user_id: current_user.id, confirmed: true)
+    redirect_to users_path(params[:user_id]), notice: 'successfully accepted it'
   end
 end
