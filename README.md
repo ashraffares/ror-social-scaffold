@@ -8,8 +8,7 @@
 - Ruby on Rails v5.2.4
 
 ## Live Demo
-
-TBA
+https://intense-ocean-78406.herokuapp.com/
 
 
 ## Getting Started
