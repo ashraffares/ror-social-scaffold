@@ -1,8 +1,8 @@
 class FriendshipsController < ApplicationController
   def create
-    @friendship = current_user.friendships.build(friend_id: params[:user_id])
+    @friendship = current_user.friendships.build(friend_id: params[:user_id],confirmed:false)
     if @friendship.save
-      redirect_to users_path, notice: 'Successfully sent'
+      redirect_to users_path, notice: 'Successfully sent request'
     else
       redirect_to users_path, notice: 'Something Went Wrong Please Try Again Later'
     end

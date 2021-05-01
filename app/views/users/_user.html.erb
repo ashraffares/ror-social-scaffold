@@ -3,8 +3,10 @@
   <span class="profile-link">
   
     <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-    <%if !user.friend?(current_user) and user != current_user%>
+    <%if !user.friend?(current_user) and user != current_user and !current_user.pending_friends.include?(user) %>
       <%= link_to 'Add a friend',  user_friendships_path(user), method: :post, class: 'profile-link' %>
     <%end%>
   </span>
 </li>
+
+<%= %>
